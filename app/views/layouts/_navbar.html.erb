@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-xxl bg-body-tertiary">
+  <div class="container-fluid" style="background-color: rgb(20, 103, 159);">
+
+    <%= image_tag "app_navbar_icon.png", height: 75, width: 75, alt: "App Icon", class: "navbar-brand-icon" %>
+    <%= link_to "Friends App", root_path, class: "navbar-brand", style: "color: white;margin-left: 15px;" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-xxl-0">
+        <%-  if user_signed_in? %>
+          <%# <li class="nav-item">
+              Add Links to application pages here
+              <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" , style: "color: white;">
+          </li> 
+          Links to application pages can be added here
+          %>
+        <%- else %>
+          <li class="nav-item">
+              <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" , style: "color: white;"%>
+          </li>
+          <li class="nav-item">
+              <%= link_to "Sign In", new_user_session_path, class: "nav-link" , style: "color: white;"%>
+          </li>
+        <%- end %>
+
+      </ul>
+      <form class="d-flex" role="search">
+        <%# <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit" style="color: white;">Search</button> %>
+      </form>
+      <ul class="navbar-nav me-auto mb-2 mb-xxl-0">
+        <%-  if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false", style= "color: white;">
+              <%= current_user.email %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </ul>
+          </li>
+        <%- end %>
+      </ul>
+    </div>
+  </div>
+</nav>
