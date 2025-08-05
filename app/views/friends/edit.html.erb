@@ -1,12 +1,4 @@
-<% content_for :title, "Editing friend" %>
+<% content_for :title, "Edit friend" %>
 
-<h1>Editing friend</h1>
+<%= render "form", friend: @friend, locals: { form_mode: "edit" } %>
 
-<%= render "form", friend: @friend %>
-
-<br>
-
-<div>
-  <%= link_to "Show this friend", @friend %> |
-  <%= link_to "Back to friends", friends_path %>
-</div>

@@ -28,8 +28,8 @@ class FriendsController < ApplicationController
         format.html { redirect_to @friend, notice: "Friend was successfully created." }
         format.json { render :show, status: :created, location: @friend }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @friend.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @friend.errors, status: :unprocessable_content }
       end
     end
   end
@@ -65,6 +65,6 @@ class FriendsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def friend_params
-      params.expect(friend: [ :first_name, :last_name, :email, :phone, :twiter, :name, :comment, :age_num, :birth_date, :salary_amt, :isbest ])
+      params.expect(friend: [ :first_name, :last_name, :email, :phone, :twiter, :name, :comment, :age_num, :birth_date, :salary_amt, :isbest, :user_id ])
     end
 end

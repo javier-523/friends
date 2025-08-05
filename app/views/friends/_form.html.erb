@@ -1,72 +1,93 @@
-<%= form_with(model: friend) do |form| %>
-  <% if friend.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
 
-      <ul>
-        <% friend.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<div class="card" style="width: 30rem";>
+  <%= form_with(model: friend) do |form| %>
+    <% if friend.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
+
+        <ul>
+          <% friend.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="card-header">
+        <% if @friend.new_record? %>
+          <h2 class="card-title">New Friend</h2>
+        <% else %>
+          <h2 class="card-title">Edit Friend</h2>
         <% end %>
-      </ul>
     </div>
+    <div class="card-body">
+      <div>
+        <%= form.label :first_name, style: "display: block" %>
+        <%= form.text_field :first_name %>
+      </div>
+
+      <div>
+        <%= form.label :last_name, style: "display: block" %>
+        <%= form.text_field :last_name %>
+      </div>
+
+      <div>
+        <%= form.label :email, style: "display: block" %>
+        <%= form.text_field :email %>
+      </div>
+
+      <div>
+        <%= form.label :phone, style: "display: block" %>
+        <%= form.text_field :phone %>
+      </div>
+
+      <div>
+        <%= form.label :twiter, style: "display: block" %>
+        <%= form.text_field :twiter %>
+      </div>
+
+      <div>
+        <%= form.label :name, style: "display: block" %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div>
+        <%= form.label :comment, style: "display: block" %>
+        <%= form.textarea :comment %>
+      </div>
+
+      <div>
+        <%= form.label :age_num, style: "display: block" %>
+        <%= form.number_field :age_num %>
+      </div>
+
+      <div>
+        <%= form.label :birth_date, style: "display: block" %>
+        <%= form.date_field :birth_date %>
+      </div>
+
+      <div>
+        <%= form.label :salary_amt, style: "display: block" %>
+        <%= form.text_field :salary_amt %>
+      </div>
+
+      <div>
+        <%= form.label :isbest, style: "display: block" %>
+        <%= form.checkbox :isbest %>
+      </div>
+
+      <div>
+        <%= form.number_field :user_id,id: :friend_user_id, value: current_user.id, type: "hidden" %>
+      </div>
+    </div>
+    <div class="card-footer d-flex">
+      <% if @friend.new_record? %>
+        <%= form.submit "Save",  class: "btn btn-primary ms-auto me-3" %>
+      <% else %>
+        <%= form.submit "Update",  class: "btn btn-primary ms-auto me-3" %>
+      <% end %>
+
+      <%= link_to "Cancel", friends_path, class: "btn btn-secondary" %>
+    </div>
+
   <% end %>
-
-  <div>
-    <%= form.label :first_name, style: "display: block" %>
-    <%= form.text_field :first_name %>
-  </div>
-
-  <div>
-    <%= form.label :last_name, style: "display: block" %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :phone, style: "display: block" %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div>
-    <%= form.label :twiter, style: "display: block" %>
-    <%= form.text_field :twiter %>
-  </div>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :comment, style: "display: block" %>
-    <%= form.textarea :comment %>
-  </div>
-
-  <div>
-    <%= form.label :age_num, style: "display: block" %>
-    <%= form.number_field :age_num %>
-  </div>
-
-  <div>
-    <%= form.label :birth_date, style: "display: block" %>
-    <%= form.date_field :birth_date %>
-  </div>
-
-  <div>
-    <%= form.label :salary_amt, style: "display: block" %>
-    <%= form.text_field :salary_amt %>
-  </div>
-
-  <div>
-    <%= form.label :isbest, style: "display: block" %>
-    <%= form.checkbox :isbest %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

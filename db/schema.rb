@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_152159) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_04_213539) do
   create_table "friends", charset: "utf8mb4", collation: "utf8mb4_uca1400_ai_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_152159) do
     t.boolean "isbest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_friends_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_uca1400_ai_ci", force: :cascade do |t|

@@ -17,6 +17,10 @@
           </li> 
           Links to application pages can be added here
           %>
+          <li class="nav-item">
+              <%= link_to "Friends", friends_path, class: "nav-link" , style: "color: white;"%>
+          </li>
+
         <%- else %>
           <li class="nav-item">
               <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" , style: "color: white;"%>
