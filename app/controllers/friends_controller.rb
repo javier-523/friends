@@ -1,5 +1,7 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :correct_user, only: [ :edit, :update, :destroy ]
 
   # GET /friends or /friends.json
   def index
@@ -12,7 +14,13 @@ class FriendsController < ApplicationController
 
   # GET /friends/new
   def new
-    @friend = Friend.new
+    # @friend = Friend.new
+    @friend = current_user.friends.build
+    # The above line ensures that the friend is associated with the current user
+    # and prevents unauthorized access to other users' friends.
+    # This is important for security and data integrity in a multi-user application.
+    # It also allows the application to easily access the current user's friends
+    # without needing to pass the user ID explicitly.
   end
 
   # GET /friends/1/edit
@@ -21,11 +29,17 @@ class FriendsController < ApplicationController
 
   # POST /friends or /friends.json
   def create
-    @friend = Friend.new(friend_params)
+    # @friend = Friend.new(friend_params)
+    @friend = current_user.friends.build(friend_params)
+    # The above line ensures that the friend is associated with the current user
+    # and prevents unauthorized access to other users' friends.
+    # This is important for security and data integrity in a multi-user application.
+    # It also allows the application to easily access the current user's friends
+    # without needing to pass the user ID explicitly.
 
     respond_to do |format|
       if @friend.save
-        format.html { redirect_to @friend, notice: "Friend was successfully created." }
+        format.html { redirect_to friends_path, notice: "Friend was successfully created." }
         format.json { render :show, status: :created, location: @friend }
       else
         format.html { render :new, status: :unprocessable_content }
@@ -55,6 +69,11 @@ class FriendsController < ApplicationController
       format.html { redirect_to friends_path, status: :see_other, notice: "Friend was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def correct_user
+    @friend = current_user.friends.find_by(id: params[:id])
+    redirect_to friends_path, notice: "Not Authorized to edit this friend" if @friend.nil?
   end
 
   private

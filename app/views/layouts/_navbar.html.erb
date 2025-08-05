@@ -20,8 +20,14 @@
           <li class="nav-item">
               <%= link_to "Friends", friends_path, class: "nav-link" , style: "color: white;"%>
           </li>
+          <li class="nav-item">
+              <%= link_to "About Us", about_path, class: "nav-link" , style: "color: white;"%>
+          </li>
 
         <%- else %>
+          <li class="nav-item">
+              <%= link_to "About Us", about_path, class: "nav-link" , style: "color: white;"%>
+          </li>
           <li class="nav-item">
               <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" , style: "color: white;"%>
           </li>
@@ -29,15 +35,16 @@
               <%= link_to "Sign In", new_user_session_path, class: "nav-link" , style: "color: white;"%>
           </li>
         <%- end %>
-
       </ul>
-      <form class="d-flex" role="search">
-        <%# <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit" style="color: white;">Search</button> %>
+
+      <form class="d-flex mb-auto" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success me-5" type="submit" style="color: white;">Search</button>
       </form>
-      <ul class="navbar-nav me-auto mb-2 mb-xxl-0">
-        <%-  if user_signed_in? %>
-          <li class="nav-item dropdown">
+      
+      <ul class="navbar-nav mb-2 mb-xxl-0">
+        <%- if user_signed_in? %>
+          <li class="nav-item dropdown me-3">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false", style= "color: white;">
               <%= current_user.email %>
             </a>

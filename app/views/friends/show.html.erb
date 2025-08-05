@@ -9,11 +9,11 @@
   </div>
 
   <div class="card-footer d-flex">
-    <%= link_to "Edit", edit_friend_path(@friend),  class: "btn btn-primary ms-auto me-3" %>
-    <%= button_to "Destroy", @friend, 
+    <%= link_to "Edit", edit_friend_path(@friend), class: "btn btn-primary ms-auto me-3" %>
+    <%= button_to "Delete", @friend, 
             data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, 
             method: :delete, class: "btn btn-danger me-3" %>
-    <%= link_to "Cancel", :back, class: "btn btn-secondary" %>
+    <%= link_to "Cancel", friends_path, class: "btn btn-secondary" %>
   </div>
 
 </div>

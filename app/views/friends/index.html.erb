@@ -1,31 +1,43 @@
-<% content_for :title, "Friends" %>
+<% if user_signed_in? %>
+  <% content_for :title, "Friends" %>
 
-<h1>Friends</h1>
+  <h1>Friends</h1>
 
-<table class="table table-striped table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Twitter</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @friends.each do |friend| %>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
       <tr>
-        <td><%= friend.first_name %></td>
-        <td><%= friend.last_name %></td>
-        <td><%= friend.email %></td>
-        <td><%= friend.phone %></td>
-        <td><%= link_to 'Show', friend %></td>
-        <td><%= link_to 'Edit', edit_friend_path(friend) %></td>
+        <th class = "w-auto">Name</th>
+        <th class = "w-auto">Email</th>
+        <th class = "w-auto">Phone</th>
+        <th class = "w-auto">Twitter</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @friends.each do |friend| %>
+        <% if friend.user == current_user %>
+          <tr>
+            <td class = "w-auto">
+              <%= link_to "#{friend.first_name} #{friend.last_name}", edit_friend_path(friend) %>
+            </td>
+            <td class = "w-auto"><%= friend.email %></td>
+            <td class = "w-auto"><%= friend.phone %></td>
+            <td class = "w-auto"><%= friend.twiter %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to "New friend", new_friend_path, class: "btn btn-primary" %>
+  <%= link_to "New friend", new_friend_path, class: "btn btn-primary" %>
 
+<% else %>
+  <h1>Welcome to the Friends App</h1>
+  <br>
+  <h4>This is a demo of my Rails applications.</h4>
+  <br>
+  <p>Please sign in to manage your friends.</p>
+  <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary" %>
+  <br><br>
+  <%= link_to "Sign Up", new_user_registration_path %>
+
+<% end %>

@@ -1,4 +1,8 @@
 <% content_for :title, "Edit friend" %>
 
-<%= render "form", friend: @friend, locals: { form_mode: "edit" } %>
+<%= render "form", friend: @friend %>
 
+<br>
+    <%= button_to "Delete", @friend, 
+            data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, 
+            method: :delete, class: "btn btn-danger me-3" %>
