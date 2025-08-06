@@ -71,4 +71,14 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+
+  # Allow all hosts in development environment.
+  Rails.application.config.hosts = [
+  IPAddr.new("0.0.0.0/0"),        # All IPv4 addresses.
+  IPAddr.new("::/0"),             # All IPv6 addresses.
+  "localhost",                    # The localhost reserved domain.
+  "rubydev1.fjrg.net:3000",
+  "friends.fjrg.net"  # Additional comma-separated hosts for development.
+  ]
+
 end

@@ -1,0 +1,14 @@
+services:
+  friends:
+    image: friends:latest
+    container_name: friends
+    restart: unless-stopped
+    # command:
+    #   - ./bin/rails server -b 0.0.0.0
+    volumes:
+      - ~/docker_volumes/friends:/rails
+    ports:
+      - 3000:80
+    environment:
+      RAILS_ENV: development
+      RAILS_MASTER_KEY: 6c6693a94b211eccbd6e213d493e6909
