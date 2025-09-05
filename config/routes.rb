@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   end
   # root "home#index"
   root "friends#index"
-  get "home/about" => "home#about", as: :about
+  # get "home/about" => "home#about", as: :about
+  get "home/about"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
