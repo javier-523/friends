@@ -4,8 +4,10 @@ source "https://rubygems.org"
 gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-# Use mariadb-mysql as the database for Active Record
-gem "mysql2", "~> 0.5"
+# Use sqlite3 as the database for Active Record
+gem "sqlite3", ">= 2.1"
+# Use PostgreSQL as the database for Active Record
+gem 'pg', '>= 1.5.9'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -56,6 +58,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "faker"
 end
 
 group :test do
@@ -64,5 +67,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
-# Add a flexible authentication solution for Rails with Warden
+# Specific gem for this application
 gem "devise", "~> 4.9", ">= 4.9.4"
+gem "solargraph", "~> 0.57.0"
+gem "dotenv-rails", "~> 2.7"
+gem "kaminari", "~> 1.2", ">= 1.2.2"
